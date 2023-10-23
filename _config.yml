@@ -1,3 +1,9 @@
 theme: minima
 description: Real examples for the tip of the day project
 author: Bruno Alves
+
+google_analytics: G-W1W36HGM92
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
