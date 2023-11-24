@@ -1,6 +1,7 @@
 package io.github.brunobaiano.tip19spring;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -68,5 +69,28 @@ public class JoiningCollectorTest {
 
         //assert that the result is a string with 10 names separated by a comma
         assertThat(names).isEqualTo("(John,Mary,Peter,Paul,Mark,Luke,James,Jude,Thomas,Simon)");
+    }
+
+    @Test
+    @DisplayName("Joining collector without delimiter")
+    void testJoiningCollectorWithNull() {
+
+        List<Person> persons = List.of(
+                new Person("John"),
+                new Person("Mary"),
+                new Person(null),
+                new Person("Paul"),
+                new Person("Mark"),
+                new Person(null),
+                new Person("James"),
+                new Person("Jude"),
+                new Person("Thomas"),
+                new Person("Simon")
+        );
+
+        var names = persons.stream().map(Person::name).collect(Collectors.joining(","));
+
+        //assert that the result is a string with 10 names separated by a comma
+        assertThat(names).isEqualTo("John,Mary,Paul,Mark,James,Jude,Thomas,Simon");
     }
 }
